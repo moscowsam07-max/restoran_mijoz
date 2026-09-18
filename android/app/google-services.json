@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "245958560799",
+    "firebase_url": "https://restoransmartsystem-default-rtdb.firebaseio.com",
+    "project_id": "restoransmartsystem",
+    "storage_bucket": "restoransmartsystem.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245958560799:android:732e06badc52f3b94c192a",
+        "android_client_info": {
+          "package_name": "com.b2bsas.clientapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD41o-bu6KMt4mLvybjhu2v7UtCvp-xs2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245958560799:android:0700f998ffbc441e4c192a",
+        "android_client_info": {
+          "package_name": "com.b2bsas.restoranapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD41o-bu6KMt4mLvybjhu2v7UtCvp-xs2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
