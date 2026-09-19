@@ -18,17 +18,22 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Build Android App Bundle
+      - name: Auto Locate and Build AAB
         run: |
+          # Flutter loyihasi qaysi papkada ekanini avtomat qidirib topish
           PROJECT_DIR=$(find . -name "pubspec.yaml" -exec dirname {} \;)
           echo "Loyiha papkasi topildi: $PROJECT_DIR"
           cd $PROJECT_DIR
           
-          if [ -f "android/gradlew" ]; then
-            chmod +x android/gradlew
+          # Agar Android fayllari chala yuklangan bo'lsa, ularni noldan toza yaratish
+          if [ ! -d "android" ]; then
+            flutter create . --platforms=android
           fi
           
-          # Paketlar to'qnashuvini majburlab hal qilish
+          # Gradlew fayliga ruxsat berish
+          chmod +x android/gradlew
+          
+          # Paketlarni yangilab, toza build qilish
           flutter pub upgrade --major-versions
           flutter pub get
           flutter build appbundle --release
