@@ -20,16 +20,16 @@ jobs:
 
       - name: Build Android App Bundle
         run: |
-          # Loyiha qaysi papkada ekanini avtomat qidirib topish
           PROJECT_DIR=$(find . -name "pubspec.yaml" -exec dirname {} \;)
           echo "Loyiha papkasi topildi: $PROJECT_DIR"
           cd $PROJECT_DIR
           
-          # Android gradlew fayliga ruxsat berish
           if [ -f "android/gradlew" ]; then
             chmod +x android/gradlew
           fi
           
+          # Paketlar to'qnashuvini majburlab hal qilish
+          flutter pub upgrade --major-versions
           flutter pub get
           flutter build appbundle --release
       
