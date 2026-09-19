@@ -18,18 +18,20 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Locate and Fix Gradle Permissions
+      - name: Build Android App Bundle
         run: |
-          GRADLE_PATH=$(find . -name gradlew)
-          if [ -n "$GRADLE_PATH" ]; then
-            chmod +x "$GRADLE_PATH"
-            cd $(dirname "$GRADLE_PATH")/..
-            flutter pub get
-            flutter build appbundle --release
-          else
-            echo "Error: gradlew file not found!"
-            exit 1
+          # Loyiha qaysi papkada ekanini avtomat qidirib topish
+          PROJECT_DIR=$(find . -name "pubspec.yaml" -exec dirname {} \;)
+          echo "Loyiha papkasi topildi: $PROJECT_DIR"
+          cd $PROJECT_DIR
+          
+          # Android gradlew fayliga ruxsat berish
+          if [ -f "android/gradlew" ]; then
+            chmod +x android/gradlew
           fi
+          
+          flutter pub get
+          flutter build appbundle --release
       
       - name: Upload AAB Artifact
         uses: actions/upload-artifact@v4
