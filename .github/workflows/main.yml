@@ -17,16 +17,22 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          flutter-version: '3.22.2' # FlutterFlow loyihasiga mos keladigan eng barqaror versiya
 
-      - name: Fix Gradle Permissions
-        run: chmod +x android/gradlew
-
-      - run: flutter pub get
-      - run: flutter build appbundle --release --no-pub
+      - name: Locate and Fix Gradle Permissions
+        run: |
+          GRADLE_PATH=$(find . -name gradlew)
+          if [ -n "$GRADLE_PATH" ]; then
+            chmod +x "$GRADLE_PATH"
+            cd $(dirname "$GRADLE_PATH")/..
+            flutter pub get
+            flutter build appbundle --release
+          else
+            echo "Error: gradlew file not found!"
+            exit 1
+          fi
       
       - name: Upload AAB Artifact
         uses: actions/upload-artifact@v4
         with:
           name: release-aab
-          path: build/app/outputs/bundle/release/app-release.aab
+          path: "**/build/app/outputs/bundle/release/app-release.aab"
